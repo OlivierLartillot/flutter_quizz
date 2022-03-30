@@ -99,7 +99,10 @@ class QuizzPageState extends State<QuizzPage>{
   bool goodAnswer = (question.reponse == answer);
       setState(() {
       if (goodAnswer) {
-        scoreCounter++;
+        setState(() {
+          scoreCounter++;
+        });
+
       }
       });
 
@@ -123,6 +126,7 @@ class QuizzPageState extends State<QuizzPage>{
               Text(question.explication),
               TextButton(
                   onPressed: (){
+                    Navigator.of(context).pop();
                     toNextQuestion();
 
                   },
@@ -161,8 +165,8 @@ class QuizzPageState extends State<QuizzPage>{
 
   toNextQuestion() {
     if (index<questions.length-1) {
+
       setState(() {
-        Navigator.of(context).pop();
         index++;
       });
     } else {
